@@ -13,10 +13,13 @@ Model:
         ***Volume (need Scale Factor)
         Volume (% change)
         
-Stage 0: Build a Model that probably wont work
+Stage 0: Build a Model that probably wont work (check)
     Get the data (check)
     define Volatility
-        label each day as either 0 if spread for next 7 days is <5% or 1 if spread is greater
-    Scale basic attributes against their max values
+        label each day as either 0 if spread for next 7 days is <5% or 1 if spread is greater (check)
+    Scale basic attributes against their max values (check)
+    Design Model (cHECK)
+
+
 
 Stage 1: add additional attributes
