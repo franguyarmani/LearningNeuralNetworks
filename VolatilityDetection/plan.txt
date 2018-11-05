@@ -19,6 +19,8 @@ Stage 0: Build a Model that probably wont work (check)
         label each day as either 0 if spread for next 7 days is <5% or 1 if spread is greater (check)
     Scale basic attributes against their max values (check)
     Design Model (cHECK)
+	results:
+		model predicted about the same accuracy as a probabilty guess :(
 
 
 

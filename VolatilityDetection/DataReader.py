@@ -19,18 +19,24 @@ def AddFields(List):
         toArray.append(y)
     return toArray
 
-Array = AddFields(ImportData("daily_.DJI.csv"))
+def MakeWeeks(arr):
+    weeks = []
+    for x in range(len(arr)-7):
+        week = arr[x:x+7]
+        weeks.append(week)
+    return weeks
+
+
 
 
 def ComputeType(arr, H):
     labels = []
-    for x in range(len(arr)):
+    for x in range(len(arr)-7): #minus seven to compensate for 7 less data points length of week
         updateGlobals(arr[x])
-        if isNextWeekVolatile(x,arr,H):
+        if isNextWeekVolatile(x+7,arr,H): #offset to account of length of week 
             #print(arr[x])
             labels.append([1,0])
             #print(arr[x])
-
         else:
             #print(arr[x])
             labels.append([0,1])
@@ -58,6 +64,7 @@ def updateGlobals(line):
         
 
 def isNextWeekVolatile(i, arr, H): #i is the index of the current day
+                                    #H is the distance of prediction
     high = 0.0
     low = 100000000.0 #a vakue that is hopefully higher than any value that will be encountered
     for y in range(7): #iterate through to next 7 days
@@ -65,15 +72,24 @@ def isNextWeekVolatile(i, arr, H): #i is the index of the current day
             high = arr[abs(i-y-H)][1]
         if arr[abs(i-y-H)][2] < low:
             low = arr[abs(i-y-H)][2]
-        if (high - low)/high > 0.07:
+        if (high - low)/high > 0.05:
             return True
 
     if (high - low) < 0:
         raise ValueError ('Low should never be greater than high')
     return False
 
-labels = np.array(ComputeType(Array, 10))
-cleanData = np.array(ScaleValues(Array)).astype(np.uint8)
+
+Array = AddFields(ImportData("daily_.DJI.csv"))#array of all the days
+
+
+
+
+labels = np.array(ComputeType(Array, 0))
+cleanArray = ScaleValues(Array)
+Weeks = np.array(MakeWeeks(cleanArray))
+
+
 
 
    
