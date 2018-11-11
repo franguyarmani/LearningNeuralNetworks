@@ -1,6 +1,6 @@
 Goal: Predict Volatility in the coming week
     Volatility: a change on 5% on more inside 7 days
-
+AlphaVantage Key: G8TIC4CWMTRQU2H4
 Data
     DownLoad Data
     create 
