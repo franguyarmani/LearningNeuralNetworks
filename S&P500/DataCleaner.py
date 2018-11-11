@@ -12,3 +12,4 @@ def process_data_for_labels(ticker):
     for i in range(1, hm_days+1):
         
 
+
